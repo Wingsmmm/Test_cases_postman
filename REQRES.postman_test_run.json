@@ -1,0 +1,171 @@
+{
+	"id": "74d51007-fd09-4fe3-96f5-fd67ffb69e86",
+	"name": "REQRES",
+	"timestamp": "2021-01-23T14:14:56.532Z",
+	"collection_id": "115bd619-1216-41f8-a13c-b4c20610584d",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 13,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "6123c92f-b688-4d83-941d-cca36fc307ac",
+			"name": "Create user",
+			"url": "https://reqres.in/api/users",
+			"time": 231,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Response format - JSON": true,
+				"Check fields": true,
+				"Key Value": true,
+				"Value is not null": true,
+				"Value is not empty": true,
+				"Status message": true,
+				"Content-Type - application/json": true,
+				"Cookie": true
+			},
+			"testPassFailCounts": {
+				"Response format - JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Check fields": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Key Value": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Value is not null": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Value is not empty": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status message": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type - application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Cookie": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				231
+			],
+			"allTests": [
+				{
+					"Response format - JSON": true,
+					"Check fields": true,
+					"Key Value": true,
+					"Value is not null": true,
+					"Value is not empty": true,
+					"Status message": true,
+					"Content-Type - application/json": true,
+					"Cookie": true
+				}
+			]
+		},
+		{
+			"id": "d73284ae-722e-4c33-b88b-646dc362d1f2",
+			"name": "Update  job",
+			"url": "https://reqres.in/api/users/2",
+			"time": 162,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response format - JSON 2nd": true,
+				"Job was changed": true,
+				"Value updatedAt is not empty": true
+			},
+			"testPassFailCounts": {
+				"Response format - JSON 2nd": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Job was changed": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Value updatedAt is not empty": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				162
+			],
+			"allTests": [
+				{
+					"Response format - JSON 2nd": true,
+					"Job was changed": true,
+					"Value updatedAt is not empty": true
+				}
+			]
+		},
+		{
+			"id": "46595f5f-5ec0-47bb-80b7-291e1d7ca04a",
+			"name": "User removing ",
+			"url": "https://reqres.in/api/users/2",
+			"time": 155,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Status code is 204": true,
+				"Status message": true
+			},
+			"testPassFailCounts": {
+				"Status code is 204": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				155
+			],
+			"allTests": [
+				{
+					"Status code is 204": true,
+					"Status message": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 548,
+	"collection": {
+		"requests": [
+			{
+				"id": "6123c92f-b688-4d83-941d-cca36fc307ac",
+				"method": "POST"
+			},
+			{
+				"id": "d73284ae-722e-4c33-b88b-646dc362d1f2",
+				"method": "PUT"
+			},
+			{
+				"id": "46595f5f-5ec0-47bb-80b7-291e1d7ca04a",
+				"method": "DELETE"
+			}
+		]
+	}
+}

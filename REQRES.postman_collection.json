@@ -1,0 +1,190 @@
+{
+	"info": {
+		"_postman_id": "115bd619-1216-41f8-a13c-b4c20610584d",
+		"name": "REQRES",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//0. API - reqres.in/api/users, method POST, i have taken \"body\" from the documentation\r",
+							"\r",
+							"//1. TC 1) Response format - JSON\r",
+							"pm.test(\"Response format - JSON\", function() {pm.response.to.have.jsonBody()});\r",
+							"\r",
+							"//2. TC 2) Check fields - i check just last 2 keys because of their values are changed for every requests\r",
+							"pm.test(\"Check fields\", function() {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"createdAt\");\r",
+							"    pm.expect(jsonData).to.have.property(\"id\");\r",
+							"});\r",
+							"\r",
+							"//3. TC 3) Check \"key\": \"value\"\r",
+							"pm.test(\"Key Value\", () => {\r",
+							"  const responseJson = pm.response.json();\r",
+							"  pm.expect(responseJson.job).to.eql(\"leader\");\r",
+							"  pm.expect(responseJson.name).to.eql(\"morpheus\");\r",
+							"});\r",
+							"\r",
+							"//4. TC 4) Value is not null\r",
+							"pm.test(\"Value is not null\", () => {\r",
+							"  const responseJson = pm.response.json();\r",
+							"  pm.expect(responseJson.id).not.eql(null);\r",
+							"});\r",
+							"\r",
+							"//5. TC 5) Value is not empty\r",
+							"pm.test(\"Value is not empty\", () => {\r",
+							"  const responseJson = pm.response.json();\r",
+							"  pm.expect(responseJson.createdAt).not.eql(\"\");\r",
+							"});\r",
+							"\r",
+							"//6. TC 6) Status message \"Created\"\r",
+							"pm.test(\"Status message\", () => {\r",
+							"  pm.response.to.have.status(\"Created\");\r",
+							"});\r",
+							"\r",
+							"//7. TC 7) Content type\r",
+							"pm.test(\"Content-Type - application/json\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"//8. TC 8) Cookie\r",
+							"pm.test(\"Cookie\", () => {\r",
+							"  pm.expect(pm.cookies.has());\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"morpheus\",\r\n    \"job\": \"leader\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update  job",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Check the name still same. User's job was changed.\r",
+							"\r",
+							"pm.test(\"Response format - JSON 2nd\", \r",
+							"function() {pm.response.to.have.jsonBody()});\r",
+							"\r",
+							"pm.test(\"Job was changed\", () => {\r",
+							"  const responseJson = pm.response.json();\r",
+							"  pm.expect(responseJson.name).to.eql(\"morpheus\")\r",
+							"  pm.expect(responseJson.job).to.eql(\"zion resident\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Value updatedAt is not empty\", () => {\r",
+							"  const responseJson = pm.response.json();\r",
+							"  pm.expect(responseJson.uodatedAt).not.eql(\"\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"morpheus\",\r\n    \"job\": \"zion resident\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users/2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User removing ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Check that user was removed by check status code and status messege\r",
+							"\r",
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"pm.test(\"Status message\", () => {\r",
+							"  pm.response.to.have.status(\"No Content\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users/2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
